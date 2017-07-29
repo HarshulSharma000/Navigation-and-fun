@@ -1,10 +1,10 @@
 import Welcome from '../screens/welcome';
-import Authen from '../screens/authen';
+import LoginScreen from '../screens/LoginScreen';
 import Mainscreen from '../screens/main';
 
 const Routes = {
     Welcome: { screen: Welcome },
-    Auth: { screen: Authen },
+    Auth: { screen: LoginScreen },
     Main: { screen: Mainscreen }
     };
 

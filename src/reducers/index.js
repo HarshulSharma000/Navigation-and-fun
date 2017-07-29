@@ -1,11 +1,10 @@
-/**
- * Created by stan229 on 5/27/16.
- */
 import { combineReducers } from 'redux';
+import AuthReducer from './AuthReducer';
 
 
 export default function getRootReducer(navReducer) {
     return combineReducers({
-        nav: navReducer
+        nav: navReducer,
+        auth: AuthReducer
     });
 }
