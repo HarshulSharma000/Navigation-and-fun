@@ -5,7 +5,7 @@ class Welcome extends Component {
     render() {
         return (
             <View style={styles.container} >
-                <Text> Main flow begins here </Text>
+                <Text> Editing awaits you... </Text>
             </View>
         );
     }

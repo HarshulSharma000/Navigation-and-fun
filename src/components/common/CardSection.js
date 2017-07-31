@@ -1,11 +1,11 @@
 //@flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View, Text} from 'react-native';
 
-class CardSection extends Component{
+class CardSection extends Component {
     render() {
-        return(
-            <View style = { styles.containerStyle}>
+        return (
+            <View style={styles.containerStyle}>
                     {this.props.children}
             </View>
         );
@@ -21,5 +21,5 @@ const styles = {
         position: 'relative',
         padding: 10
     }
-}
+};
 export { CardSection };

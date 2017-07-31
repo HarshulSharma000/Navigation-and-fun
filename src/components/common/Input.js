@@ -3,8 +3,11 @@ import React,{Component} from 'react';
 import {Text,TextInput,View} from 'react-native';
 
 class Input extends Component{
+    static defaultProps = {
+        keyboardType: 'default'
+    }
     render(){
-        const {label,value,onChangeText,placeholder,secureTextEntry} = this.props;
+        const {label,value,onChangeText,placeholder,secureTextEntry, keyboardType} = this.props;
         const {inputStyle,labelStyle,containerStyle} = styles;
         return(
             <View style = {containerStyle}>
@@ -14,6 +17,7 @@ class Input extends Component{
                     secureTextEntry = {secureTextEntry}
                     autoCorrect = {false}
                     style = {inputStyle}
+                    keyboardType = {keyboardType}
                     underlineColorAndroid = 'transparent'
                     value = {value}
                     onChangeText = {onChangeText}

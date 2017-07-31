@@ -15,8 +15,11 @@ class LoginForm extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { email, password, error, loading } = nextProps;
-		this.setState({ email, password, error, loading });
+		const { email, password, error, loading, user } = nextProps;
+		this.setState({ email, password, error, loading, user });
+		if (user) {
+			nextProps.navigation.navigate('Main');
+		}
 	}
 
 	onButtonPress() {
@@ -26,7 +29,7 @@ class LoginForm extends Component {
 	renderButton() {
 		if (this.props.loading) {
 			return ( 
-				<View style={{ marginTop: 80 }}>
+				<View style={{ marginTop: 30 }}>
 					<Spinner size="large" />
 				</View>
 			);	
@@ -48,6 +51,7 @@ class LoginForm extends Component {
 						value={this.state.email}
 						onChangeText={email => this.setState({ email })}
 						label='Email:'
+						keyboardType={'email-address'}
 						placeholder='user@email.com'
 					/>
 				</CardSection>

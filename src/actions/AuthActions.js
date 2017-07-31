@@ -8,7 +8,10 @@ export const loginfail = (dispatch) => {
 };
 
 export const loginsuccess = (dispatch, user) => {
-	dispatch({ type: LOGIN_SUCCESS, payload: { user } });
+	// console.log("dude rocks...");
+	// console.log(user);
+	// console.log("hi there");
+	dispatch({ type: LOGIN_SUCCESS, payload: { user: user.uid } });
 };
 
 export const LoginAttempt = (email, password) => {

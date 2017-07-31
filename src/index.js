@@ -8,7 +8,11 @@ import Routes from './config/routes';
 
 import getStore from './store';
 
-const AppNavigator = TabNavigator(Routes);
+console.disableYellowBox = true;
+
+const AppNavigator = TabNavigator(Routes, {
+    lazy: true
+});
 
 const navReducer = (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);
