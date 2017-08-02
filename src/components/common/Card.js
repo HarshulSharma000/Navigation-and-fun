@@ -2,8 +2,6 @@
 import React, {Component} from 'react';
 import { Text, View } from 'react-native';
 
-
-
 class Card extends Component{
     render() {
         return (
@@ -13,7 +11,7 @@ class Card extends Component{
         );
     }
 }
-export  { Card };
+export { Card };
 
 const styles = {
     containerStyle: {
@@ -22,8 +20,8 @@ const styles = {
         borderColor: '#ddd',
         borderBottomWidth: 0,
         elevation: 5,
-        marginLeft:5,
-        marginRight:5,
-        marginTop:10
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10
     }
-}
+};

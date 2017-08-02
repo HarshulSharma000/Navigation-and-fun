@@ -8,7 +8,11 @@ import { CardSection, Input } from './common';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class EmployeeForm extends Component {
+  static defaultProps = {
+    enabled: true
+  };
   render() {
+    const { enabled } = this.props;
     return (
       <View style={{ flex: 1, width: SCREEN_WIDTH - 20 }}>
         <CardSection>
@@ -16,7 +20,8 @@ class EmployeeForm extends Component {
             label="Name"
             placeholder="You Know Who..."
             value={this.props.value.Name}
-            onChangeText={value => { this.props.val({ Name: value }); }}
+            editable={enabled}
+            onChangeText={value => { this.props.setValue({ Name: value }); }}
           />
         </CardSection>
 
@@ -26,7 +31,8 @@ class EmployeeForm extends Component {
             placeholder="9711548769"
             value={this.props.value.Phone}
             keyboardType={'numeric'}
-            onChangeText={value => { this.props.val({ Phone: value }); }}
+            editable={enabled}
+            onChangeText={value => { this.props.setValue({ Phone: value }); }}
           />
         </CardSection>
 
@@ -35,7 +41,8 @@ class EmployeeForm extends Component {
           <Picker
             style={{ flex: 2 }}
             selectedValue={this.props.value.Shift}
-            onValueChange={value => { this.props.val({ Shift: value }); }}
+            enabled={enabled}
+            onValueChange={value => { this.props.setValue({ Shift: value }); }}
           >
             <Picker.Item label="Monday" value="Monday" />
             <Picker.Item label="Tuesday" value="Tuesday" />

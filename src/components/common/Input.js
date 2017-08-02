@@ -1,26 +1,28 @@
 //@flow
-import React,{Component} from 'react';
-import {Text,TextInput,View} from 'react-native';
+import React, { Component } from 'react';
+import { Text, TextInput, View } from 'react-native';
 
-class Input extends Component{
+class Input extends Component {
     static defaultProps = {
-        keyboardType: 'default'
-    }
-    render(){
-        const {label,value,onChangeText,placeholder,secureTextEntry, keyboardType} = this.props;
-        const {inputStyle,labelStyle,containerStyle} = styles;
-        return(
-            <View style = {containerStyle}>
-                <Text style = {labelStyle}>{label}</Text>
+        keyboardType: 'default',
+        editable: true
+    };
+    render() {
+        const { label, value, onChangeText, placeholder, secureTextEntry, keyboardType, editable } = this.props;
+        const { inputStyle, labelStyle, containerStyle } = styles;
+        return (
+            <View style={containerStyle}> 
+                <Text style={labelStyle}>{label}</Text>
                 <TextInput
-                    placeholder = {placeholder}
-                    secureTextEntry = {secureTextEntry}
-                    autoCorrect = {false}
-                    style = {inputStyle}
-                    keyboardType = {keyboardType}
-                    underlineColorAndroid = 'transparent'
-                    value = {value}
-                    onChangeText = {onChangeText}
+                    placeholder={placeholder}
+                    secureTextEntry={secureTextEntry}
+                    autoCorrect={false}
+                    style={inputStyle}
+                    keyboardType={keyboardType}
+                    editable={editable}
+                    underlineColorAndroid='transparent'
+                    value={value}
+                    onChangeText={onChangeText}
                 />
             </View>
         );
@@ -35,17 +37,17 @@ const styles = {
         fontSize: 20,
         flex: 2
     },
-    labelStyle:{
+    labelStyle: {
         fontSize: 22,
-        paddingLeft:20,
+        paddingLeft: 20,
         flex: 1
     },
-    containerStyle:{
+    containerStyle: {
         height: 60,
         flex: 1,
-        flexDirection:'row',
+        flexDirection: 'row',
         alignItems: 'center'
     }
-}
+};
 
-export {Input};
+export { Input };

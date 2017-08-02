@@ -21,5 +21,5 @@ export const employeeCreate = ({ Name, Phone, Shift, navigation }) => {
         firebase.database().ref(`/users/${currentUser.uid}/employees`)
         .push({ Name, Phone, Shift });
         navigation.goBack();
-    }
+    };
 };

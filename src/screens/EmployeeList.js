@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import * as actions from '../actions';
+import ListItem from '../components/ListItem';
 
 class EmployeeList extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -14,7 +15,6 @@ class EmployeeList extends Component {
                 marginTop: Platform.OS === 'Android' ? 40 : 0
             }
         });
-
     componentWillMount() {
         this.props.employeesFetch();
         this.createDataSource(this.props);
@@ -28,10 +28,20 @@ class EmployeeList extends Component {
         });
         this.dataSource = ds.cloneWithRows(employees);
     }
+    renderRow(employee) {
+        return (
+            <ListItem employee={employee} navigation={this.props.navigation} />
+        );
+    }
     render() {
+        console.log(this.state);
         return (
             <View style={styles.container} >
-                <Text> Welcome to the list </Text>
+                <ListView
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow.bind(this)}
+                />
             </View>
         );
     }
@@ -39,6 +49,7 @@ class EmployeeList extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'

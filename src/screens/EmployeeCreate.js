@@ -17,7 +17,7 @@ class Welcome extends Component {
         return (
             <View style={styles.container} >
                 <EmployeeForm 
-                val={(states) => { this.setState(states); return { ...states }; }}
+                setValue={(states) => { this.setState(states); return { ...states }; }}
                 value={this.state}
                 />
                 <Button 
