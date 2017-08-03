@@ -23,3 +23,23 @@ export const employeeCreate = ({ Name, Phone, Shift, navigation }) => {
         navigation.goBack();
     };
 };
+
+export const employeeEdit = ({ Name, Phone, Shift, uid }) => {
+    return () => {
+        const { currentUser } = firebase.auth();
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+        .set({ Name, Phone, Shift })
+        .then(
+            console.log('Done')
+        );
+    };
+};
+
+export const employeeDelete = ({ uid, navigation }) => {
+    return () => {
+        const { currentUser } = firebase.auth();
+        firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+        .remove()
+        .then(navigation.goBack);
+    };
+};

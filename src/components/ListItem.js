@@ -9,7 +9,7 @@ class ListItem extends Component {
         const { Name, Phone } = this.props.employee;
         const { employee, navigation } = this.props;
         return (
-                <TouchableOpacity onPress={() => navigation.navigate('Edit', { value: employee })}>
+                <TouchableOpacity onPress={() => navigation.navigate('Edit', { value: employee, title: 'Display' })}>
                     <CardSection style={{ flexdirection: 'column', justifyConent: 'flex-start' }}> 
                         <View style={{ width: SCREEN_WIDTH - 10 }}>  
                             <Text style={{ fontSize: 20 }}> {Name} </Text>

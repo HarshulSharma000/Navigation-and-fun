@@ -1,20 +1,64 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import EmployeeForm from '../components/EmployeeForm';
+import * as actions from '../actions';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class EmployeeEdit extends Component {
-    static navigationOptions = () => ({
-        title: 'Editing Screen'
+    static navigationOptions = ({ navigation }) => ({
+        title: navigation.state.params.title
     });
     state = { enabled: false };
     componentWillMount() {
         this.setState(this.props.navigation.state.params.value);
     }
     renderButtons() {
+        const { setParams } = this.props.navigation;
+        if (this.state.enabled) {
+            return (
+                <Button 
+                title='Save' 
+                large 
+                buttonStyle={{ width: SCREEN_WIDTH }} 
+                onPress={() => { 
+                    this.props.employeeEdit(this.state);
+                    this.setState({ enabled: !this.state.enabled }); 
+                    setParams({ title: 'Display' }); 
+                }} 
+                />
+            );
+        }
+        
         return (
-            <Button title='Edit' onPress={this.setState({ enabled: true })} />
+            <View>
+                <Button
+                title='Edit'
+                large
+                buttonStyle={{ width: SCREEN_WIDTH }} 
+                onPress={() => { 
+                    this.setState({ enabled: !this.state.enabled }); 
+                    setParams({ title: 'Editing Screens' }); 
+                }} 
+                />
+                <Button
+                title='Text'
+                large
+                buttonStyle={{ width: SCREEN_WIDTH }} 
+                onPress={() => {}} 
+                />
+                <Button
+                title='Fire'
+                large
+                buttonStyle={{ width: SCREEN_WIDTH }} 
+                onPress={() => {
+                    this.props.employeeDelete({ ...this.state, navigation: this.props.navigation }); 
+                }}  
+                />
+            </View>
         );
     }
     render() {
@@ -27,7 +71,7 @@ class EmployeeEdit extends Component {
                 value={this.state}
                 enabled={this.state.enabled}
                 />
-                <Text> Full fun </Text>
+                {this.renderButtons()}
             </View>
         );
     }
@@ -42,4 +86,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmployeeEdit;
+export default connect(null, actions)(EmployeeEdit);
