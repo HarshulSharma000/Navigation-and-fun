@@ -2,15 +2,13 @@
 import firebase from 'firebase';
 
 import { LOGIN_SUCCESS, LOGIN_ATTEMPT, LOGIN_FAIL, WEAK_PASS } from '../actions/Types';
+import { employeeFetch } from './EmployeeActions';
 
 export const loginfail = (dispatch) => {
 	dispatch({ type: LOGIN_FAIL });
 };
 
 export const loginsuccess = (dispatch, user) => {
-	// console.log("dude rocks...");
-	// console.log(user);
-	// console.log("hi there");
 	dispatch({ type: LOGIN_SUCCESS, payload: { user: user.uid } });
 };
 

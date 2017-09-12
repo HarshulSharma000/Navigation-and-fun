@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ListView, Platform } from 'react-native';
+import { Text, View, StyleSheet, ListView, Platform, AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import firebase from 'firebase';
 
 import * as actions from '../actions';
 import ListItem from '../components/ListItem';
@@ -12,11 +13,20 @@ class EmployeeList extends Component {
             title: 'Employees',
             headerRight: <Button title='Add' onPress={() => navigation.navigate('Create')} />,
             style: {
-                marginTop: Platform.OS === 'Android' ? 40 : 0
+                paddingTop: 40
             }
         });
-    componentWillMount() {
-        this.props.employeesFetch();
+     componentWillMount() {
+        firebase.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+
+            } else {
+                await AsyncStorage.removeItem('jwt');
+                // No user is signed in.
+            }
+            this.props.employeesFetch();
+        });
+        //this.props.employeesFetch();
         this.createDataSource(this.props);
     }
     componentWillReceiveProps(nextProps) {
@@ -34,13 +44,19 @@ class EmployeeList extends Component {
         );
     }
     render() {
-        console.log(this.state);
         return (
             <View style={styles.container} >
                 <ListView
                 enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this.renderRow.bind(this)}
+                />
+                <Button 
+                title='signout?' 
+                onPress={() => { 
+                    firebase.auth().signOut();
+                    this.props.navigation.navigate('Auth');
+                }}
                 />
             </View>
         );

@@ -1,10 +1,12 @@
 //@flow
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
+
 
 import { Card, CardSection, Input, Button, Spinner } from '../components/common';
-import { LoginAttempt } from '../actions';
+import { LoginAttempt, employeesFetch } from '../actions';
 
 class LoginForm extends Component {
 	state = { email: '', password: '', error: '', loading: false };
@@ -14,16 +16,20 @@ class LoginForm extends Component {
 		this.setState({ email, password, error, loading });
 	}
 
-	componentWillReceiveProps(nextProps) {
+	async componentWillReceiveProps(nextProps) {
 		const { email, password, error, loading, user } = nextProps;
 		this.setState({ email, password, error, loading, user });
 		if (user) {
+			const token = await firebase.auth().currentUser.getToken();
+			await AsyncStorage.setItem('jwt', token);
+			this.props.employeesFetch();
 			nextProps.navigation.navigate('Main');
 		}
 	}
 
 	onButtonPress() {
 		this.props.LoginAttempt(this.state.email, this.state.password);
+
 	}
 
 	renderButton() {
@@ -90,4 +96,4 @@ const styles = {
   }
 };
 
-export default connect(mapStateToProps, { LoginAttempt })(LoginForm);
+export default connect(mapStateToProps, { LoginAttempt,employeesFetch })(LoginForm);

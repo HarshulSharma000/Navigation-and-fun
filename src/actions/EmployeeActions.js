@@ -4,12 +4,10 @@ import {
 } from './Types';
 
 export const employeesFetch = () => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        console.log(currentUser.uid);
-        firebase.database().ref(`/users/${currentUser.uid}/employees`)
+    return async (dispatch) => {
+         const { currentUser } = firebase.auth();
+         firebase.database().ref(`/users/${currentUser.uid}/employees`)
         .on('value', snapshot => {
-            console.log(snapshot.val());
             dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() }); 
         });
     };
@@ -30,7 +28,7 @@ export const employeeEdit = ({ Name, Phone, Shift, uid }) => {
         firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
         .set({ Name, Phone, Shift })
         .then(
-            console.log('Done')
+            
         );
     };
 };
