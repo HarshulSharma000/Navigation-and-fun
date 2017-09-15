@@ -53,14 +53,16 @@ class AppWithNavigationState extends Component {
     
     onBackPress = () => {
         const { dispatch, nav } = this.props;
-        console.log('nav', nav.index);
-        if (nav.index === 0) {
+        //console.log('nav', nav.index);
+        //if (nav.index === 0) {
+        //    BackHandler.exitApp();
+        //}
+        if (nav.routes[3].index === 0) {
             BackHandler.exitApp();
+            return true;
         }
         dispatch(NavigationActions.back());
-        if (nav.index === 0) {
-            BackHandler.exitApp();
-        }
+        //console.log('nav', nav);
         return true;
     };
 
