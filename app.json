@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "manager",
+    "name": "manager2",
     "description": "An empty new project",
-    "slug": "manager",
+    "slug": "manager2",
     "privacy": "public",
-    "sdkVersion": "19.0.0",
+    "sdkVersion": "20.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
