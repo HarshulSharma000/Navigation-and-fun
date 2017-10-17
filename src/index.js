@@ -14,7 +14,7 @@ const AppNavigator = TabNavigator(Routes, {
     lazy: true,
     swipeEnabled: false,
     navigationOptions: {
-            tabBarVisible: false
+            tabBarVisible: true
     },
     tabBarOptions: { 
         style: { 
